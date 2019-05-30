@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu"
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:background="@android:color/darker_gray"
+        app:srcCompat="@drawable/clock" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHESS CLOCK"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textSize="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="Time:"
+            android:textColor="#FCFFFFFF"
+            android:textSize="35sp" />
+
+        <EditText
+            android:id="@+id/fullTime"
+            android:layout_width="176dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="25sp"
+            android:layout_weight="1"
+            android:contentDescription="00:00"
+            android:ellipsize="start"
+            android:ems="10"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:hint="minutes:seconds"
+            android:inputType="time"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="Increment:"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp" />
+
+        <EditText
+            android:id="@+id/increment"
+            android:layout_width="176dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="25sp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="seconds"
+            android:inputType="time"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/startButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="#BBB9BE"
+        android:text="START"
+        android:textSize="50dp" />
+
+</LinearLayout>

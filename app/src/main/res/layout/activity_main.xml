@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="#8F040505"
-        android:text="5:00"
+        android:text=""
         android:textSize="100sp"/>
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="#8F040505"
-        android:text="5:00"
+        android:text=""
         android:textSize="100sp" />
 
 </LinearLayout>

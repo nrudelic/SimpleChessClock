@@ -1,5 +1,5 @@
 package com.rudelic.simplechessclock;
-
+import com.rudelic.simplechessclock.MainMenu.*;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -14,8 +15,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private long firstPlayerTimeLeft = 300000;
-    private long secondPlayerTimeLeft = 300000;
+    private long firstPlayerTimeLeft;
+    private long secondPlayerTimeLeft;
 
     private boolean firstOnTurn;
 
@@ -27,14 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean gameStart = true;
 
+    //public EditText time;
+    public EditText increment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        firstPlayerDone = (Button) findViewById(R.id.firstPlayerTime);
+        EditText time = MainMenu.getTime();
+        firstPlayerDone = findViewById(R.id.firstPlayerTime);
         firstPlayerDone.setRotation(180);
-        secondPlayerDone = (Button) findViewById(R.id.secondPlayerTime);
+        secondPlayerDone = findViewById(R.id.secondPlayerTime);
+
+        firstPlayerTimeLeft = Integer.parseInt(time.getText().toString()) * 1000 * 60;
+        secondPlayerTimeLeft = Integer.parseInt(time.getText().toString()) * 1000 * 60;
+
+        updateButtonTextFirst();
+        updateButtonTextSecond();
+
 
         firstPlayerDone.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     resumeTimerFirst();
                     return;
                 }
-                if(firstOnTurn == false){
+                if(!firstOnTurn){
                     return;
                 }else{
                     resumeTimerSecond();
@@ -116,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         int minutes = (int) (firstPlayerTimeLeft / 1000) / 60;
         int seconds = (int) (firstPlayerTimeLeft / 1000) % 60;
 
-        String setTextTo = String.format(Locale.getDefault(), "%02d:%2d", minutes, seconds);
+        String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         firstPlayerDone.setText(setTextTo);
     }
 
@@ -124,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         int minutes = (int) (secondPlayerTimeLeft / 1000) / 60;
         int seconds = (int) (secondPlayerTimeLeft / 1000) % 60;
 
-        String setTextTo = String.format(Locale.getDefault(), "%02d:%2d", minutes, seconds);
+        String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         secondPlayerDone.setText(setTextTo);
     }
 }
