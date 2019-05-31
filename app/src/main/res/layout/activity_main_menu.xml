@@ -9,20 +9,20 @@
     tools:context=".MainMenu">
 
     <ImageView
-        android:contentDescription="@string/chessImg"
         android:layout_width="match_parent"
         android:layout_height="157dp"
         android:background="@android:color/darker_gray"
+        android:contentDescription="@string/chessImg"
         app:srcCompat="@drawable/clock" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        app:fontFamily="monospace"
         android:gravity="center"
         android:text="@string/title"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        app:fontFamily="monospace" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,31 +32,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30sp"
             android:layout_marginStart="30sp"
-            app:fontFamily="monospace"
+            android:layout_marginLeft="30sp"
             android:gravity="center"
             android:text="@string/time"
             android:textColor="#FCFFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            app:fontFamily="monospace" />
 
         <NumberPicker
             android:id="@+id/fullTimeMinutes"
             android:layout_width="111dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10sp"
             android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="30dp"
-            android:theme="@style/NumberPickerText"
             android:background="@android:color/darker_gray"
-            android:divider="@android:drawable/arrow_down_float" />
+            android:divider="@android:drawable/arrow_down_float"
+            android:theme="@style/NumberPickerText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:text="@string/colon"
             android:textColor="@android:color/white"
             android:textSize="35sp" />
@@ -65,8 +65,8 @@
             android:id="@+id/fullTimeSeconds"
             android:layout_width="109dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15sp"
             android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="30dp"
             android:background="@android:color/darker_gray"
@@ -83,31 +83,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30sp"
             android:layout_marginStart="30sp"
-            app:fontFamily="monospace"
+            android:layout_marginLeft="30sp"
             android:gravity="center"
             android:text="@string/increment"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            app:fontFamily="monospace" />
 
         <EditText
             android:id="@+id/increment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
-            android:layout_marginRight="25sp"
             android:layout_marginEnd="25sp"
+            android:layout_marginRight="25sp"
             android:layout_marginBottom="30dp"
             android:layout_weight="1"
-            android:ellipsize="start"
             android:autofillHints="@string/autoFillHint"
+            android:ellipsize="start"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/seconds"
             android:inputType="time"
             android:textColor="#FFFFFF"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -118,8 +118,8 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:background="#BBB9BE"
-        app:fontFamily="monospace"
         android:text="@string/start"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        app:fontFamily="monospace" />
 
 </LinearLayout>
