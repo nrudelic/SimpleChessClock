@@ -86,10 +86,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resumeTimerFirst() {
-        updateButtonTextSecond(increment);
         firstOnTurn = true;
         if (secondCount != null) {
+            updateButtonTextSecond(increment);
             secondCount.cancel();
+        } else {
+            updateButtonTextSecond(0);
         }
 
         secondPlayerDone.setBackgroundColor(Color.parseColor("#8F040505"));
@@ -110,10 +112,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resumeTimerSecond(){
-        updateButtonTextFirst(increment);
         firstOnTurn = false;
         if(firstCount != null) {
+            updateButtonTextFirst(increment);
             firstCount.cancel();
+        } else {
+            updateButtonTextFirst(0);
         }
         firstPlayerDone.setBackgroundColor(Color.parseColor("#8F040505"));
         secondPlayerDone.setBackgroundColor(Color.WHITE);
@@ -135,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateButtonTextFirst(int inc){
         int minutes = (int) ((firstPlayerTimeLeft + inc) / 1000) / 60;
         int seconds = (int) ((firstPlayerTimeLeft + inc) / 1000) % 60;
+        firstPlayerTimeLeft = firstPlayerTimeLeft + inc;
 
         String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         firstPlayerDone.setText(setTextTo);
@@ -143,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateButtonTextSecond(int inc){
         int minutes = (int) ((secondPlayerTimeLeft + inc) / 1000) / 60;
         int seconds = (int) ((secondPlayerTimeLeft + inc) / 1000) % 60;
+        secondPlayerTimeLeft = secondPlayerTimeLeft + inc;
 
         String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         secondPlayerDone.setText(setTextTo);
