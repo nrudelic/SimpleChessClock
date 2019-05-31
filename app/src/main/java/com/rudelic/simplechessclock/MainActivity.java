@@ -25,27 +25,32 @@ public class MainActivity extends AppCompatActivity {
 
     private CountDownTimer firstCount;
     private CountDownTimer secondCount;
+    private CountDownTimer done;
 
     private boolean gameStart = true;
 
-    //public EditText time;
-    public EditText increment;
+    private int increment = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText time = MainMenu.getTime();
+
+        int timeMinutes = MainMenu.getTimeMinutes();
+        Log.i(TAG, "onCreate: timeMinutes:" + timeMinutes);
+        int timeSeconds = MainMenu.getTimeSeconds();
+
         firstPlayerDone = findViewById(R.id.firstPlayerTime);
         firstPlayerDone.setRotation(180);
         secondPlayerDone = findViewById(R.id.secondPlayerTime);
 
-        firstPlayerTimeLeft = Integer.parseInt(time.getText().toString()) * 1000 * 60;
-        secondPlayerTimeLeft = Integer.parseInt(time.getText().toString()) * 1000 * 60;
+        firstPlayerTimeLeft = timeMinutes * 1000 * 60 + timeSeconds * 1000;
+        secondPlayerTimeLeft = timeMinutes * 1000 * 60 + timeSeconds * 1000;
 
-        updateButtonTextFirst();
-        updateButtonTextSecond();
+        updateButtonTextFirst(0);
+        updateButtonTextSecond(0);
 
+        increment = MainMenu.getIncrement() * 1000;
 
         firstPlayerDone.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resumeTimerFirst() {
+        updateButtonTextSecond(increment);
         firstOnTurn = true;
         if (secondCount != null) {
             secondCount.cancel();
@@ -92,17 +98,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 firstPlayerTimeLeft = millisUntilFinished;
-                updateButtonTextFirst();
+                updateButtonTextFirst(0);
             }
 
             @Override
             public void onFinish() {
-
+                firstPlayerDone.setClickable(false);
+                highlightLoser(firstPlayerDone);
             }
         }.start();
     }
 
     private void resumeTimerSecond(){
+        updateButtonTextFirst(increment);
         firstOnTurn = false;
         if(firstCount != null) {
             firstCount.cancel();
@@ -113,29 +121,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 secondPlayerTimeLeft = millisUntilFinished;
-                updateButtonTextSecond();
+                updateButtonTextSecond(0);
             }
 
             @Override
             public void onFinish() {
-
+                secondPlayerDone.setClickable(false);
+                highlightLoser(secondPlayerDone);
             }
         }.start();
     }
 
-    private void updateButtonTextFirst(){
-        int minutes = (int) (firstPlayerTimeLeft / 1000) / 60;
-        int seconds = (int) (firstPlayerTimeLeft / 1000) % 60;
+    private void updateButtonTextFirst(int inc){
+        int minutes = (int) ((firstPlayerTimeLeft + inc) / 1000) / 60;
+        int seconds = (int) ((firstPlayerTimeLeft + inc) / 1000) % 60;
 
         String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         firstPlayerDone.setText(setTextTo);
     }
 
-    private void updateButtonTextSecond(){
-        int minutes = (int) (secondPlayerTimeLeft / 1000) / 60;
-        int seconds = (int) (secondPlayerTimeLeft / 1000) % 60;
+    private void updateButtonTextSecond(int inc){
+        int minutes = (int) ((secondPlayerTimeLeft + inc) / 1000) / 60;
+        int seconds = (int) ((secondPlayerTimeLeft + inc) / 1000) % 60;
 
         String setTextTo = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         secondPlayerDone.setText(setTextTo);
     }
+    private void highlightLoser(Button button){
+
+        button.setBackgroundColor(Color.RED);
+        try {
+            wait(10000);
+        }catch(Exception e){
+
+        }
+    }
+
 }

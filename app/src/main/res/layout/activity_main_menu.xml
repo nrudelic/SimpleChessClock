@@ -4,22 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenu"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
-    android:background="@android:color/darker_gray">
+    tools:context=".MainMenu">
 
     <ImageView
+        android:contentDescription="@string/chessImg"
         android:layout_width="match_parent"
         android:layout_height="157dp"
         android:background="@android:color/darker_gray"
         app:srcCompat="@drawable/clock" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CHESS CLOCK"
+        android:layout_marginTop="15dp"
+        app:fontFamily="monospace"
         android:gravity="center"
-        android:fontFamily="monospace"
-        android:textSize="50dp"/>
+        android:text="@string/title"
+        android:textSize="50sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,29 +33,45 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30sp"
-            android:fontFamily="monospace"
+            android:layout_marginStart="30sp"
+            app:fontFamily="monospace"
             android:gravity="center"
-            android:text="Time:"
+            android:text="@string/time"
             android:textColor="#FCFFFFFF"
             android:textSize="35sp" />
 
-        <EditText
-            android:id="@+id/fullTime"
-            android:layout_width="176dp"
+        <NumberPicker
+            android:id="@+id/fullTimeMinutes"
+            android:layout_width="111dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="25sp"
-            android:layout_weight="1"
-            android:contentDescription="00:00"
-            android:ellipsize="start"
-            android:ems="10"
-            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginStart="10sp"
             android:layout_marginTop="35dp"
-            android:gravity="center"
-            android:hint="minutes:seconds"
-            android:inputType="time"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:layout_marginBottom="30dp"
+            android:theme="@style/NumberPickerText"
+            android:background="@android:color/darker_gray"
+            android:divider="@android:drawable/arrow_down_float" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/colon"
+            android:textColor="@android:color/white"
+            android:textSize="35sp" />
+
+        <NumberPicker
+            android:id="@+id/fullTimeSeconds"
+            android:layout_width="109dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="30dp"
+            android:background="@android:color/darker_gray"
+            android:scrollbarSize="90dp"
+            android:theme="@style/NumberPickerText" />
 
     </LinearLayout>
 
@@ -65,27 +84,30 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30sp"
-            android:fontFamily="monospace"
+            android:layout_marginStart="30sp"
+            app:fontFamily="monospace"
             android:gravity="center"
-            android:text="Increment:"
+            android:text="@string/increment"
             android:textColor="#FFFFFF"
             android:textSize="35sp" />
 
         <EditText
             android:id="@+id/increment"
-            android:layout_width="176dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:layout_marginRight="25sp"
+            android:layout_marginEnd="25sp"
             android:layout_marginBottom="30dp"
             android:layout_weight="1"
             android:ellipsize="start"
+            android:autofillHints="@string/autoFillHint"
             android:ems="10"
             android:gravity="center"
-            android:hint="seconds"
+            android:hint="@string/seconds"
             android:inputType="time"
             android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:textSize="25sp"/>
 
     </LinearLayout>
 
@@ -96,7 +118,8 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:background="#BBB9BE"
-        android:text="START"
-        android:textSize="50dp" />
+        app:fontFamily="monospace"
+        android:text="@string/start"
+        android:textSize="50sp" />
 
 </LinearLayout>
